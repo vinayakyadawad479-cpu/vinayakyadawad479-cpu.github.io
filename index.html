@@ -5,21 +5,31 @@
   <title>Nancy, Be My Valentine 💖</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       height: 100vh;
       margin: 0;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-align: center;
     }
+
     .card {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.18);
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      z-index: 2;
     }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
     button {
       font-size: 18px;
       padding: 12px 30px;
@@ -28,15 +38,51 @@
       margin: 10px;
       cursor: pointer;
     }
-    #yes { background: #ffe3e8; color: #d6336c; }
+
+    #yes {
+      background: #ffe3e8;
+      color: #d6336c;
+    }
+
     #no {
       background: #fff;
       color: #333;
       position: absolute;
     }
+
+    #msg {
+      margin-top: 20px;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+
+<!-- Romantic Music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c3a3a1c4c.mp3?filename=romantic-ambient-112191.mp3" type="audio/mpeg">
+</audio>
 
 <div class="card">
   <h1>Nancy 💕<br>Will you be my Valentine?</h1>
@@ -46,15 +92,38 @@
 </div>
 
 <script>
+/* Move NO button */
 function moveNo() {
   const b = document.getElementById("no");
   b.style.left = Math.random() * 80 + "vw";
   b.style.top = Math.random() * 80 + "vh";
 }
+
+/* YES message */
 function yesClick() {
   document.getElementById("msg").innerHTML =
-    "Yayyy Nancy 😍💖<br>Don’t keep me waiting…<br>Our Valentine date is calling 🌹";
+    "Nancy 😍💖<br><br>" +
+    "You just made my heart smile.<br>" +
+    "This means more to me than you know…<br><br>" +
+    "Now come on, don’t keep me waiting 😉<br>" +
+    "Our Valentine moment is already written in the stars 🌹✨";
 }
+
+/* Floating hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 300);
 </script>
 
 </body>
