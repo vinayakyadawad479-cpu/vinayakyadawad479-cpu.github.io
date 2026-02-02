@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nancy, Be My Valentine 💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255,255,255,0.15);
+      padding: 40px;
+      border-radius: 20px;
+    }
+    button {
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #yes { background: #ffe3e8; color: #d6336c; }
+    #no {
+      background: #fff;
+      color: #333;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Nancy 💕<br>Will you be my Valentine?</h1>
+  <button id="yes" onclick="yesClick()">Yes 💘</button>
+  <button id="no" onmouseover="moveNo()">No 🙈</button>
+  <p id="msg"></p>
+</div>
+
+<script>
+function moveNo() {
+  const b = document.getElementById("no");
+  b.style.left = Math.random() * 80 + "vw";
+  b.style.top = Math.random() * 80 + "vh";
+}
+function yesClick() {
+  document.getElementById("msg").innerHTML =
+    "Yayyy Nancy 😍💖<br>Don’t keep me waiting…<br>Our Valentine date is calling 🌹";
+}
+</script>
+
+</body>
+</html>
